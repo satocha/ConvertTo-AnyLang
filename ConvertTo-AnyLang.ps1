@@ -13,7 +13,7 @@ function ConvertTo-AnyLang {
     )
     $url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=$destLang&dt=t&q="
     foreach ($text in $texts) {
-        if (!$text.trim()) { CONTINUE }
+        if (!"$text".trim()) { CONTINUE }
         $FromStr = ConvertTo-URIEncode $text
         try {
             $jsonRAW = (Invoke-WebRequest "$url$FromStr").Content #-ErrorAction SilentlyContinue
